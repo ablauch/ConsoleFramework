@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class HelloWorld {
     static private final String LOG_TAG = HelloWorld.class.getSimpleName();
     static double x = 3;
-    static double n = 2;
+    static double n = 5;
 
     public static void main(String arg[]) {
 
