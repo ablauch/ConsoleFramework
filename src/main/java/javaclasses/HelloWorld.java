@@ -17,9 +17,9 @@ public class HelloWorld {
 
         System.out.println("This program will calculate x^n");
         System.out.println("Enter x\r");
-        x = in.nextDouble();
+//        x = in.nextDouble();
         System.out.println("Enter n\r");
-        n = in.nextDouble();
+//        n = in.nextDouble();
 
         System.out.println("power equals " + pow(x, n));
     }
