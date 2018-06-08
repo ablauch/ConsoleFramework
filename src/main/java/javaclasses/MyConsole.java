@@ -12,10 +12,14 @@ import javax.swing.JTextField;
 public class MyConsole {
     private KeyEvent lastevent = null;
 
+    String validCharString = "";
+    String validCharInt = "-0123456789";
+    String validCharDouble = "";
+
     public MyConsole() {
         KeyListener listener = new MyListener();
-
         JFrame frame = new JFrame("MyConsole");
+
         Container contentPane = frame.getContentPane();
         JTextField textField = new JTextField();
         textField.addKeyListener(listener);
@@ -32,27 +36,31 @@ public class MyConsole {
         }
     }
 
-    public char getKey() {
-        return getKey(false);
-    }
-
-    public char getKey(boolean echo) {
+    public char checkKey() {
         sleep(100);
         if (lastevent==null)
             return 0;
         char key = lastevent.getKeyChar();
         lastevent = null;
-        if (echo)
-            System.out.print(key);
+        return key;
+    }
+
+    public char getChar() {
+        char key;
+        do {
+            key = checkKey();
+        } while (key==0);
+        System.out.print(key);
         return key;
     }
 
     public int getInt() {
         char key;
         int number = 0;
+        int sign = 1;
 
         do {
-            key = getKey();
+            key = checkKey();
             switch (key) {
                 case '0':
                 case '1':
@@ -67,15 +75,79 @@ public class MyConsole {
                     System.out.print(key);
                     number = number*10 + (int)(key-'0');
                     break;
+                case '-':
+                    if (number==0) {
+                        System.out.print(key);
+                        sign = -1;
+                    }
+                    break;
                 case 10:
                     System.out.print(key);
-                    break;
-                default:
                     break;
             }
         } while (key!=10);
 
-        return number;
+        return sign*number;
+    }
+
+    public double getDouble() {
+        char key;
+        double number = 0;
+        double sign = 1;
+        boolean decimal = false;
+        double scale = 1;
+
+        do {
+            key = checkKey();
+            switch (key) {
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                    System.out.print(key);
+                    number = number*10 + (int)(key-'0');
+                    if (decimal)
+                        scale *= 10;
+                    break;
+                case '-':
+                    if (number==0) {
+                        System.out.print(key);
+                        sign = -1;
+                    }
+                    break;
+                case '.':
+                    if (decimal==false) {
+                        decimal = true;
+                        System.out.print(key);
+                    }
+                    break;
+                case 10:
+                    System.out.print(key);
+                    break;
+            }
+        } while (key!=10);
+
+        return sign*number/scale;
+    }
+
+    public String getString() {
+        String str = "";
+        char key;
+
+        do {
+            key = getChar();
+            if (key!=10) {
+                str = str+key;
+            }
+        } while (key!=10);
+
+        return str;
     }
 
     /*
@@ -88,7 +160,7 @@ public class MyConsole {
             char key = event.getKeyChar();
 
             // determine if valid key (limit what is processed)
-            if ( Character.isLetterOrDigit(key) || (key==10) ) {
+            if ( ((key>=0x20) && (key<=0x7E)) || (key==10) ) {
                 lastevent = event;
             }
 

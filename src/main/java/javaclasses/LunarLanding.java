@@ -13,7 +13,7 @@ public class LunarLanding {
         System.out.println(" ? - Displays help");
 
         do {
-            key = console.getKey(true);
+            key = console.checkKey();
             switch (key) {
                 case 0:
                     break;
