@@ -1,6 +1,6 @@
 package javaclasses;
 import java.util.Random;
-public class HighLowBadCode {
+public class HighLowBadFormat {
     static MyConsole C = null;
     static enum gm {P12, P1C, P21, PC1};
     private static int mn =1, mx =10;
