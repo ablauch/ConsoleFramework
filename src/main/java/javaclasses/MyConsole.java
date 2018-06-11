@@ -36,6 +36,11 @@ public class MyConsole {
         }
     }
 
+    public void clearScreen() {
+        for (int i=1; i<40; i++)
+            System.out.println();
+    }
+
     public char checkKey() {
         sleep(100);
         if (lastevent==null)
