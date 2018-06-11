@@ -1,7 +1,5 @@
 package javaclasses;
 
-import java.util.Scanner;
-
 /**
  * Created by ablauch on 5/10/2018.
  * test console input and output
