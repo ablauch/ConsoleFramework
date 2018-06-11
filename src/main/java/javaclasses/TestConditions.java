@@ -7,18 +7,14 @@ import java.util.Scanner;
  * test conditional statements
  */
 public class TestConditions {
-    static private final String LOG_TAG = TestConditions.class.getSimpleName();
 
     public static void main(String arg[]) {
-        int n;
+        int n=5;
 
-        // Using Scanner for Getting Input from User
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println(LOG_TAG);
+        System.out.println("Sample Conditional Statements Program");
 
         System.out.println("Please a number between 1 and 10: ");
-        n = sc.nextInt();
+//        n = sc.nextInt();
 
         if (n < 1) {
             System.out.println("You entered a number less than 1");
@@ -30,4 +26,3 @@ public class TestConditions {
     }
 
 }
-
