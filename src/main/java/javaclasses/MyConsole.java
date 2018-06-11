@@ -36,9 +36,14 @@ public class MyConsole {
         }
     }
 
+    public void clearScreen() {
+        for (int i = 1; i < 40; i++)
+            System.out.println();
+    }
+
     public char checkKey() {
         sleep(100);
-        if (lastevent==null)
+        if (lastevent == null)
             return 0;
         char key = lastevent.getKeyChar();
         lastevent = null;
@@ -49,7 +54,7 @@ public class MyConsole {
         char key;
         do {
             key = checkKey();
-        } while (key==0);
+        } while (key == 0);
         System.out.print(key);
         return key;
     }
@@ -73,10 +78,10 @@ public class MyConsole {
                 case '8':
                 case '9':
                     System.out.print(key);
-                    number = number*10 + (int)(key-'0');
+                    number = number * 10 + (int) (key - '0');
                     break;
                 case '-':
-                    if (number==0) {
+                    if (number == 0) {
                         System.out.print(key);
                         sign = -1;
                     }
@@ -85,9 +90,9 @@ public class MyConsole {
                     System.out.print(key);
                     break;
             }
-        } while (key!=10);
+        } while (key != 10);
 
-        return sign*number;
+        return sign * number;
     }
 
     public double getDouble() {
@@ -111,18 +116,18 @@ public class MyConsole {
                 case '8':
                 case '9':
                     System.out.print(key);
-                    number = number*10 + (int)(key-'0');
+                    number = number * 10 + (int) (key - '0');
                     if (decimal)
                         scale *= 10;
                     break;
                 case '-':
-                    if (number==0) {
+                    if (number == 0) {
                         System.out.print(key);
                         sign = -1;
                     }
                     break;
                 case '.':
-                    if (decimal==false) {
+                    if (decimal == false) {
                         decimal = true;
                         System.out.print(key);
                     }
@@ -131,9 +136,9 @@ public class MyConsole {
                     System.out.print(key);
                     break;
             }
-        } while (key!=10);
+        } while (key != 10);
 
-        return sign*number/scale;
+        return sign * number / scale;
     }
 
     public String getString() {
@@ -142,10 +147,10 @@ public class MyConsole {
 
         do {
             key = getChar();
-            if (key!=10) {
-                str = str+key;
+            if (key != 10) {
+                str = str + key;
             }
-        } while (key!=10);
+        } while (key != 10);
 
         return str;
     }
@@ -160,7 +165,7 @@ public class MyConsole {
             char key = event.getKeyChar();
 
             // determine if valid key (limit what is processed)
-            if ( ((key>=0x20) && (key<=0x7E)) || (key==10) ) {
+            if (((key >= 0x20) && (key <= 0x7E)) || (key == 10)) {
                 lastevent = event;
             }
 
@@ -196,9 +201,9 @@ public class MyConsole {
             System.out.println("    Location: "
                     + keyboardLocation(e.getKeyLocation()));
             System.out.println("    Action? " + e.isActionKey());
-            System.out.println("isDigit       "+Character.isDigit(e.getKeyChar()));
-            System.out.println("isLetter      "+Character.isLetter(e.getKeyChar()));
-            System.out.println("isLetterDigit "+Character.isLetterOrDigit(e.getKeyChar()));
+            System.out.println("isDigit       " + Character.isDigit(e.getKeyChar()));
+            System.out.println("isLetter      " + Character.isLetter(e.getKeyChar()));
+            System.out.println("isLetterDigit " + Character.isLetterOrDigit(e.getKeyChar()));
         }
 
         private String keyboardLocation(int keybrd) {
