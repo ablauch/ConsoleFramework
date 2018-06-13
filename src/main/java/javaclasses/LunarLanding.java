@@ -1,6 +1,5 @@
 package javaclasses;
 
-
 /*
 AUTHOR:		Dr. Andrew Blauch
 DESCRIPTION:	Lunar Landing Game
